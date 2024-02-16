@@ -1,0 +1,92 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/css/styles.css">
+    <title>Welcome</title>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">Alien Coffee</a>
+        <ul class="navbar">
+           <li><a href="#">Home</a></li> 
+           <li><a href="#">Menu</a></li> 
+           <li><a href="#">Contact</a></li> 
+        </ul>
+        <div class="search">
+            <input type="text" placeholder="Search">
+        </div>
+    </header>
+<div class="banner">
+    <div class="content">
+        <img src="../../public/img/Default_imagine_an_Aliens_coffee_shop_logo_1.jpg" alt="" class="aliens"/>
+        <h2>Discover the Taste of the Universe</h2>
+        <p>Experience out-of-this-world flavors with our cosmic coffee blends.</p>
+        <h2>Menu</h2>
+       <label class="card">
+        <ul>
+            <% menu.forEach(item => { %>
+                <li><%= item.name %> - $<%= item.price %></li>
+            <% }); %>
+        </ul>
+       </div>
+
+        <div class="button">
+    <a href="/register"><i class=""></i> Register</a>
+           </div>
+    </div>
+ <div class="carousel-box">
+
+    </div>
+
+    
+</div>
+
+    <div class="footer">
+        <p>&copy; 2024 Aliens Coffee. All rights reserved.</p>
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+    <title>Welcome</title>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">Alien Coffee</a>
+        <ul class="navbar">
+           <li><a href="#">Home</a></li> 
+           <li><a href="#">Menu</a></li> 
+           <li><a href="#">Contact</a></li> 
+        </ul>
+        <div class="search">
+            <input type="text" placeholder="Search">
+        </div>
+    </header>
+    <div class="banner">
+        <div class="content">
+            <img src="../../public/img/Aliens.jpg" alt="" class="aliens"/>
+            <h2>Discover the Taste of the Universe</h2>
+            <p>Experience out-of-this-world flavors with our cosmic coffee blends.</p>
+            
+            <div class="menu-card">
+                <h2>Menu</h2>
+                <ul>
+                    <% menu.forEach(item => { %>
+                        <li><%= item.name %> - $<%= item.price %></li>
+                    <% }); %>
+                </ul>
+            </div>
+            <div class="button">
+                <a href="/register"><i class="btn-outline-danger"></i> Register</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

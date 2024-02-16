@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tasty Space - Edit Profile</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body{
+    margin: 0;
+    background: linear-gradient(to bottom right, #9349f5, #fd4848);
+   
+    font-family: Poppins;
+    font-size: 12px;
+}
+a{
+    text-decoration: none;
+}
+header{
+    width: 1140px;
+    max-width: 80%;
+    margin: auto;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+}
+header a{
+    color: #eee;
+    margin-right: 40px;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+.overlay {
+    background-color: transparent;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+.box {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px; /* Adjusted padding */
+}
+
+.box h1 {
+    text-align: center;
+    margin-bottom: 20px; /* Added margin bottom */
+}
+
+.box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(0deg, transparent, transparent, #45f3ff, #45f3ff, #45f3ff);
+    z-index: -1;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    animation-delay: -3s;
+}
+
+/* Adjusting form */
+.box form {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px; /* Adjusted padding */
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0.9;
+}
+
+/* Adjusting inputBox */
+.box form .inputBox {
+    margin-top: 20px; /* Adjusted margin top */
+}
+.box form .inputBox label {
+    padding: 0;
+    font-size: 0.85em;
+    color: white; /* Set label color to white */
+}
+
+.box form .inputBox input {
+    padding: 8px; /* Adjusted padding */
+    border-radius: 6px;
+    height: 30px; /* Reduced height of input */
+}
+
+/* Adjusting animation */
+@keyframes animate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/menu">Menu</a>
+            <a href="/register">Profile</a>
+            <a href="/feedback">FeedBack</a>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="overlay">
+            <div class="box">
+                <h1>Edit Profile</h1>
+                <form action="/profile/<%= profile.id %>/edit" method="post"> <!-- Update action attribute -->
+                    <div class="inputBox">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" value="<%= profile.name %>" required><br><br> <!-- Pre-fill with existing profile data -->
+            
+                        <label for="species">Species:</label>
+                        <select id="species" name="species" required>
+                            <option value="Humanoid" <% if (profile.species === 'Humanoid') { %> selected <% } %>>Humanoid</option> <!-- Pre-select based on existing profile data -->
+                            <option value="Reptilian" <% if (profile.species === 'Reptilian') { %> selected <% } %>>Reptilian</option>
+                            <option value="Insectoid" <% if (profile.species === 'Insectoid') { %> selected <% } %>>Insectoid</option>
+                        </select><br><br>
+            
+                        <label for="planet">Planet:</label>
+                        <select id="planet" name="planet" required>
+                            <option value="Earth" <% if (profile.planet === 'Earth') { %> selected <% } %>>Earth</option> <!-- Pre-select based on existing profile data -->
+                            <option value="Mars" <% if (profile.planet === 'Mars') { %> selected <% } %>>Mars</option>
+                            <option value="Alpha Centauri" <% if (profile.planet === 'Alpha Centauri') { %> selected <% } %>>Alpha Centauri</option>
+                        </select><br><br>
+            
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" value="<%= profile.password %>" required><br><br> <!-- Pre-fill with existing profile data -->
+            
+                        <button type="submit">Update</button> <!-- Change button text to "Update" -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

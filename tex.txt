@@ -1,0 +1,49 @@
+
+function addProfile(newProfile) {
+    newProfile.id = alienProfiles.length > 0 ? Math.max(...alienProfiles.map(profile => profile.id)) + 1 : 1;
+    alienProfiles.push(newProfile);
+    fs.writeFileSync('alienProfiles.json', JSON.stringify(alienProfiles, null, 2));
+    return newProfile.id;
+}
+
+function deleteUser(userId) {
+    const index = alienProfiles.findIndex(profile => profile.id === parseInt(userId));
+    if (index !== -1) {
+        alienProfiles.splice(index, 1);
+        fs.writeFileSync('alienProfiles.json', JSON.stringify(alienProfiles, null, 2));
+        return true;
+    }
+    return false;
+}
+
+function updateUser(userId, updatedProfile) {
+    const index = alienProfiles.findIndex(profile => profile.id === parseInt(userId));
+    if (index !== -1) {
+        alienProfiles[index] = { ...alienProfiles[index], ...updatedProfile };
+        fs.writeFileSync('alienProfiles.json', JSON.stringify(alienProfiles, null, 2));
+        return true;
+    }
+    return false;
+}
+// Route to handle DELETE requests for deleting a specific user profile by ID
+app.delete('/aliens/profiles/:id', (req, res) => {
+    const userId = req.params.id;
+    const deleted = deleteUser(userId);
+    if (deleted) {
+        res.status(204).send();
+    } else {
+        res.status(404).json({ error: 'Profile not found' });
+    }
+});
+
+// Route to handle PUT requests for updating a specific user profile by ID
+app.put('/aliens/profiles/:id', (req, res) => {
+    const userId = req.params.id;
+    const updatedProfile = req.body;
+    const updated = updateUser(userId, updatedProfile);
+    if (updated) {
+        res.status(200).json(updatedProfile);
+    } else {
+        res.status(404).json({ error: 'Profile not found' });
+    }
+});

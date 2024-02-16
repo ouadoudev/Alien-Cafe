@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tasty Space</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/menu">Menu</a>
+            <a href="/register">Profile</a>
+        </nav>
+    </header>
+    <div class="container">
+        <img src="image/img1.jpg">
+        <div class="overlay">
+            <div class="box">
+                <h1>Alien Registration</h1>
+                <form action="/register" method="post">
+                    <div class="inputBox">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required><br><br>
+            
+                        <label for="species">Species:</label>
+                        <select id="species" name="species" required>
+                            <option value="">Select Species</option>
+                            <option value="Humanoid">Humanoid</option>
+                            <option value="Reptilian">Reptilian</option>
+                            <option value="Insectoid">Insectoid</option>
+                        </select><br><br>
+            
+                        <label for="planet">Planet:</label>
+                        <select id="planet" name="planet" required>
+                            <option value="">Select Planet</option>
+                            <option value="Earth">Earth</option>
+                            <option value="Mars">Mars</option>
+                            <option value="Alpha Centauri">Alpha Centauri</option>
+                        </select><br><br>
+            
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required><br><br>
+            
+                        <button type="submit">Register</button>
+                    </div>
+                </form>
+            </div>
+            
+            
+        </div>
+    </div>
+</body>
+</html>

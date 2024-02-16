@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tasty Space</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .rating {
+            unicode-bidi: bidi-override;
+            direction: rtl;
+            text-align: center;
+        }
+
+        .rating > input {
+            display: none;
+        }
+
+        .rating > label {
+            display: inline-block;
+            width: 1.1em;
+            font-size: 2em;
+            color: #ddd;
+            cursor: pointer;
+        }
+
+        .rating > label::before {
+            content: '\2605';
+        }
+
+        .rating > input:checked ~ label,
+        .rating:not(:checked) > label:hover,
+        .rating:not(:checked) > label:hover ~ label {
+            color: #FFD700;
+        }
+
+        .rating > input:checked + label:hover,
+        .rating > input:checked ~ label:hover,
+        .rating > label:hover ~ input:checked ~ label,
+        .rating > input:checked ~ label:hover ~ label {
+            color: #FFED85;
+
+
+            #feedback {
+    width: 100%;
+    resize: none; /* Disable textarea resizing */
+}
+
+/* Style for the submit button */
+input[type="submit"] {
+    background-color: #007bff; /* Blue color for the button */
+    color: #fff; /* White text color */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue color on hover */
+}
+        }
+    </style>
+    </head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/menu">Menu</a>
+            <a href="/register">Profile</a>
+            <a href="/feedback">FeedBack</a>
+        </nav>
+    </header>
+    <div class="container">
+        <img src="image/img1.jpg">
+        <div class="overlay">
+
+    <form action="/feedback" method="POST">
+        <div class="rating">
+            <input type="radio" id="star5" name="rating" value="5" required/>
+            <label for="star5"></label>
+            <input type="radio" id="star4" name="rating" value="4"/>
+            <label for="star4"></label>
+            <input type="radio" id="star3" name="rating" value="3"/>
+            <label for="star3"></label>
+            <input type="radio" id="star2" name="rating" value="2"/>
+            <label for="star2"></label>
+            <input type="radio" id="star1" name="rating" value="1"/>
+            <label for="star1"></label>
+        </div>
+        <br>
+        <label for="feedback">Your Feedback:</label><br>
+        <textarea id="feedback" name="feedback" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+</div>
+</body>
+</html>

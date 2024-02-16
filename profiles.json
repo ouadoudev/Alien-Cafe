@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Admin",
+    "species": "Humanoid",
+    "planet": "Mars",
+    "password": "azetr",
+    "id": 1
+  },
+  {
+    "name": "AdminG",
+    "species": "Reptilian",
+    "planet": "Earth",
+    "password": "azeeze",
+    "id": 2
+  },
+  {
+    "name": "Admin",
+    "species": "Reptilian",
+    "planet": "Mars",
+    "password": "ygygy",
+    "id": 3
+  },
+  {
+    "name": "Alien",
+    "species": "Humanoid",
+    "planet": "Alpha Centauri",
+    "password": "sqdqsdqsd",
+    "id": 4
+  },
+  {
+    "name": "Admin",
+    "species": "Humanoid",
+    "planet": "Mars",
+    "password": "hjhjkhkj",
+    "id": 5
+  },
+  {
+    "name": "useAdmin",
+    "species": "Insectoid",
+    "planet": "Mars",
+    "password": "ggjhgj",
+    "id": 6
+  }
+]

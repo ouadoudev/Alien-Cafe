@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tasty Space</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body{
+    margin: 0;
+    background: linear-gradient(to bottom right, #9349f5, #fd4848);
+   
+    font-family: Poppins;
+    font-size: 12px;
+}
+a{
+    text-decoration: none;
+}
+header{
+    width: 1140px;
+    max-width: 80%;
+    margin: auto;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+}
+header a{
+    color: #eee;
+    margin-right: 40px;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.overlay {
+    background-color: transparent;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.left-section {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.right-section {
+    flex: 1;
+    
+}
+
+.profile, .oredernow {
+    margin-bottom: 20px;
+}
+
+/* Form styles */
+form {
+    margin-top: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 15px;
+}
+
+input[type="text"], input[type="number"], select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Delete button */
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Edit button */
+.edit-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background-color: #218838;
+}
+
+/* List items */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+/* Card styles */
+.card {
+    background-color:transparent;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.card label {
+    display: block;
+}
+
+.card li {
+    margin-bottom: 5px;
+}
+
+.card li:last-child {
+    margin-bottom: 0;
+}
+h1{
+    text-align: center;
+    color: antiquewhite;
+}
+
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/menu">Menu</a>
+            <a href="/register">Profile</a>
+            <a href="/feedback">FeedBack</a>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="left-section">
+            <div class="overlay">
+                <section class="profile">
+                    <h1>Alien Profile</h1>
+                    <% if (profile) { %>
+                        <h2> <%= profile.name %></h2>
+                        <p>Species: <%= profile.species %></p>
+                        <p>Planet: <%= profile.planet %></p>
+                
+                        <!-- Edit Profile Button -->
+                        <a href="/profile/<%= profile.id %>/edit" class="btn btn-outline-info">Edit Profile</a>
+                
+                        <!-- Delete Profile Button -->
+                        <form action="/profiles/<%= profile.id %>" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit">Delete Profile</button>
+                        </form>
+                    <% } else { %>
+                        <p>Profile not found.</p>
+                    <% } %>
+                </section>
+                
+                <section class="oredernow">
+                    <!-- Display orders -->
+                    <h2>Orders</h2>
+                    <% if (profile.orders && profile.orders.length > 0) { %>
+                        <ul>
+                            <% profile.orders.forEach(order => { %>
+                                <li>
+                                    Food: <%= order.food %>, Quantity: <%= order.quantity %>
+                                </li>
+                            <% }); %>
+                        </ul>
+                    <% } else { %>
+                        <p>No orders yet.</p>
+                    <% } %>
+                
+                    <!-- Form to create a new order -->
+                    <form action="/profile/<%= profile.id %>/orders" method="post">
+                        <label for="food">Food:</label>
+                        <select id="food" name="food" required>
+                            <option value="">Select Food</option>
+                            <% menu.forEach(item => { %>
+                                <option value="<%= item.name %>"><%= item.name %> - $<%= item.price.toFixed(2) %></option>
+                            <% }); %>
+                        </select><br><br>
+                
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" id="quantity" name="quantity" required><br><br>
+                
+                        <button type="submit">Place Order</button>
+                    </form>
+                </section>
+            </div>
+        </div>
+
+        <div class="right-section">
+            <section class="menu">
+                <h2>Our Menu</h2>
+                <label class="card">
+                    <ul>
+                        <% menu.forEach(item => { %>
+                            <li><%= item.name %> - $<%= item.price %></li>
+                        <% }); %>
+                    </ul>
+                </label>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
